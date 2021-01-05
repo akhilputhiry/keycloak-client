@@ -13,10 +13,10 @@ Documentation is available in [https://keycloak-client.readthedocs.io](https://k
 ### Installation
 
 ```
-pip install keycloak              # install only client   
-pip install keycloak[docs]        # install client + sphinx   
-pip install keycloak[extensions]  # install client + django/flask/starlette   
-pip install keycloak[complete]    # insgall client + sphinx + django/flask/starlette   
+pip install keycloak                # install only client   
+pip install "keycloak[docs]"        # install client + sphinx   
+pip install "keycloak[extensions]"  # install client + django/flask/starlette   
+pip install "keycloak[complete]"    # insgall client + sphinx + django/flask/starlette   
 ```
 
 ### Web Framework Support
