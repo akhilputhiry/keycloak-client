@@ -33,7 +33,8 @@ class Logout(EndpointHandler):
         # refresh_token = tokens["refresh_token"]
         # self.kc.logout(access_token, refresh_token)
         # del request.session["tokens"]
-        del request.session["user"]
+        if "user" in request.session:
+            del request.session["user"]
         return Response("User logged out successfully", status_code=200)
 
 

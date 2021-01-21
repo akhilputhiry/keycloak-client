@@ -108,9 +108,11 @@ class AuthenticationMiddleware:
         return redirect(self.redirect_uri)
 
     def logout(self, session: Dict) -> None:
-        tokens = json.loads(session["tokens"])
-        access_token = tokens["access_token"]
-        refresh_token = tokens["refresh_token"]
-        self.kc.logout(access_token, refresh_token)
-        del session["tokens"]
-        del session["user"]
+        if "tokens" in session:
+            tokens = json.loads(session["tokens"])
+            access_token = tokens["access_token"]
+            refresh_token = tokens["refresh_token"]
+            self.kc.logout(access_token, refresh_token)
+            del session["tokens"]
+        if "user" in session:
+            del session["user"]

@@ -51,12 +51,14 @@ class AuthenticationMiddleware:
         return HttpResponseRedirect(url)
 
     def logout(self, request: HttpRequest) -> None:
-        tokens = json.loads(request.session["tokens"])
-        access_token = tokens["access_token"]
-        refresh_token = tokens["refresh_token"]
-        self.kc.logout(access_token, refresh_token)
-        del request.session["tokens"]
-        del request.session["user"]
+        if "tokens" in request.session
+            tokens = json.loads(request.session["tokens"])
+            access_token = tokens["access_token"]
+            refresh_token = tokens["refresh_token"]
+            self.kc.logout(access_token, refresh_token)
+            del request.session["tokens"]
+        if "user" in request.session:
+            del request.session["user"]
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
 
